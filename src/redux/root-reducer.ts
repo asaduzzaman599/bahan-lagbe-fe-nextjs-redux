@@ -1,5 +1,6 @@
-import counterSlice from "./counter-slice"
+import { baseApi } from "./api/base-api"
+
 
 export const reducer = {
-  counter: counterSlice
+  [baseApi.reducerPath]: baseApi.reducer,
 }
