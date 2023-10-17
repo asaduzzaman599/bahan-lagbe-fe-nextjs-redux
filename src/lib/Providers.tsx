@@ -1,11 +1,15 @@
 "use client";
+import { store } from "@/redux/store"
+import { Provider } from 'react-redux'
 import StyleThemeProvider from "./StyleThemeProvider"
 
 const Providers = ({ children }: React.PropsWithChildren) => {
     return (
-      <StyleThemeProvider>
-        {children}
-      </StyleThemeProvider>
+      <Provider store={store}>
+        <StyleThemeProvider>
+          {children}
+        </StyleThemeProvider>
+      </Provider>
     );
 };
 
