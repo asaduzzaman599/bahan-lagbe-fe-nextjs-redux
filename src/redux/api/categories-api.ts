@@ -19,14 +19,14 @@ export const categoriesApi = baseApi.injectEndpoints({
         method: 'PATCH',
         data: input.data
       }),
-      invalidatesTags:[TagType.USER]
+      invalidatesTags:[TagType.CATEGORY]
     }),
     deleteCategory: build.mutation({
       query: (id) =>({
         url: `/categories/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags:[TagType.USERS]
+      invalidatesTags:[TagType.CATEGORIES]
     }),
     getCategories: build.query({
       query: () =>({
