@@ -1,9 +1,10 @@
-import Signup from '@/pages/Signup'
-import React from 'react';
+"use client";
+import Signup from '@/components/Signup'
+
 
 const SignUpPage = () => {
     return (
-        <div className='gird lg:grid-cols-2 grid-cols-1 w-screen min-h-screen'>
+        <div className='grid lg:grid-cols-2 grid-cols-1 w-screen min-h-screen'>
             <div className='w-full h-full'>
                 image
             </div>

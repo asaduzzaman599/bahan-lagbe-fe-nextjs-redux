@@ -1,11 +1,11 @@
-import build from "next/dist/build"
-import { baseApi } from "./base-api"
+import { LoginInputValue, signupInputValue } from "@/types"
 import { TagType } from "../tag-types"
+import { baseApi } from "./base-api"
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     loginUser: build.mutation({
-      query: (data) =>({
+      query: (data:LoginInputValue) =>({
         url: '/auth/signin',
         method: 'POST',
         body: data
@@ -13,7 +13,7 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags:[TagType.USER]
     }),
     signupUser: build.mutation({
-      query: (data) =>({
+      query: (data: signupInputValue) =>({
         url: '/auth/signup',
         method: 'POST',
         body: data

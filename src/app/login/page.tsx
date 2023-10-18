@@ -1,5 +1,5 @@
-import Login from '@/pages/Login'
-import React from 'react';
+"use client";
+import Login from '@/components/Login'
 
 const LoginPage = () => {
     
