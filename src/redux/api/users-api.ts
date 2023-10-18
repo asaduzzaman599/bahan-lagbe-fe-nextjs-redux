@@ -12,6 +12,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags:[TagType.USER]
     }),
+    deleteUser: build.mutation({
+      query: (id) =>({
+        url: `/users/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags:[TagType.USERS]
+    }),
     createAdmin: build.mutation({
       query: ( data:signupInputValue) =>({
         url: `/users/create-admin`,
@@ -32,6 +39,7 @@ export const userApi = baseApi.injectEndpoints({
         url: `/users/${id}`,
         method: "GET",
       }),
+      providesTags: [TagType.USER]
     }),
   }),
 })
