@@ -4,13 +4,17 @@ import Form from "@/components/form/Form"
 import FormButton from "@/components/form/FormButton"
 import FormInput from "@/components/form/FormInput"
 import { useLoginUserMutation } from "@/redux/api/auth-api"
-import { storeUserInfo } from "@/services/auth.service"
+import { isLoggedIn, storeUserInfo } from "@/services/auth.service"
 import { LoginInputValue } from "@/types"
 import { useRouter } from "next/navigation"
 
 const Login =  () => {
     const [loginUser] = useLoginUserMutation()
     const router = useRouter();
+
+    if(isLoggedIn()){
+      // router.push("/");
+    }
     const onSubmit = async (data: LoginInputValue)=>{
       try {
         const res = await loginUser(data).unwrap()

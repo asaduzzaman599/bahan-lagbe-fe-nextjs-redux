@@ -1,6 +1,6 @@
 "use client";
 
-export default function DashboardPage({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode

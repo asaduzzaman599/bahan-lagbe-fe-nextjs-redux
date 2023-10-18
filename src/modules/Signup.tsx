@@ -4,10 +4,19 @@ import Form from "@/components/form/Form"
 import FormButton from "@/components/form/FormButton"
 import FormInput from "@/components/form/FormInput"
 import { useSignupUserMutation } from "@/redux/api/auth-api"
+import { isLoggedIn } from "@/services/auth.service"
 import { signupInputValue } from "@/types"
+import { useRouter } from "next/navigation"
 
-const Login =  () => {
+const Signup =  () => {
     const [signupUser] = useSignupUserMutation()
+    const router = useRouter();
+
+    
+    if(isLoggedIn()){
+      router.push("/");
+    }
+
     const onSubmit = async (data: signupInputValue)=>{
          const res = await signupUser(data)
         console.log('res',res)
@@ -60,4 +69,4 @@ const Login =  () => {
     );
 };
 
-export default Login;
+export default Signup;

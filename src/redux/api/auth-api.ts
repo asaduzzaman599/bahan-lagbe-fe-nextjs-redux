@@ -8,7 +8,7 @@ export const authApi = baseApi.injectEndpoints({
       query: (data:LoginInputValue) =>({
         url: '/auth/signin',
         method: 'POST',
-        body: data
+        data
       }),
       invalidatesTags:[TagType.USER]
     }),
@@ -16,11 +16,17 @@ export const authApi = baseApi.injectEndpoints({
       query: (data: signupInputValue) =>({
         url: '/auth/signup',
         method: 'POST',
-        body: data
+        data
       }),
       invalidatesTags:[TagType.USER]
+    }),
+    getProfile: build.query({
+      query: () =>({
+        url: '/users/profile',
+        method: "GET",
+      }),
     }),
   }),
 })
 
-export const { useLoginUserMutation, useSignupUserMutation } = authApi
+export const { useLoginUserMutation, useSignupUserMutation, useGetProfileQuery } = authApi
