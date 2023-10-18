@@ -1,147 +1,253 @@
-'use client'
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
-import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
-} from "@heroicons/react/24/solid";
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
- import {useState} from 'react';
-export function Sidebar() {
-  const [open, setOpen] = useState(0);
- 
-  const handleOpen = (value: number) => {
-    setOpen(open === value ? 0 : value);
-  };
- 
-  return (
-    <Card className="min-h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 border-r border-r-gray-200 rounded-none">
-      <div className="mb-2 p-4">
-        <Typography variant="h5" color="blue-gray">
-          Sidebar
-        </Typography>
-      </div>
-      <List>
-        <Accordion
-          open={open === 1}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""}`}
-            />
-          }
-        >
-          <ListItem className="p-0" selected={open === 1}>
-            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
-              <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                Dashboard
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Analytics
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Reporting
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Projects
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion>
-        <Accordion
-          open={open === 2}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`}
-            />
-          }
-        >
-          <ListItem className="p-0" selected={open === 2}>
-            <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
-              <ListItemPrefix>
-                <ShoppingBagIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
-                E-Commerce
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className="py-1">
-            <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Orders
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Products
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion>
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
-      </List>
-    </Card>
-  );
+"use client";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { SidebarItems } from "@/constants/sidebarItems";
+import { getUserInfo } from "@/services/auth.service";
+import { usePathname } from "next/navigation";
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
 }
+
+const Sidebar = ({ children, sidebarOpen, setSidebarOpen }: { children: React.ReactNode; sidebarOpen:boolean; setSidebarOpen: (val: boolean)=>void }) => {
+
+  const { role } = getUserInfo() as any;
+  const pathName = usePathname();
+  return (
+    <>
+      <div className="bg-background dark:bg-slate-700 text-slate-900 dark:text-slate-200">
+        {/* Mobile Sidebar */}
+        <Transition.Root show={sidebarOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-50 md:hidden"
+            onClose={setSidebarOpen}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 z-40 flex">
+              <Transition.Child
+                as={Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
+              >
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-tertiary">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in-out duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <div className="absolute top-0 right-0 -mr-12 pt-2">
+                      <button
+                        type="button"
+                        className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        <span className="sr-only">Close sidebar</span>
+                        <XMarkIcon
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </div>
+                  </Transition.Child>
+                  <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
+                    <nav className="mt-5 space-y-1 px-2">
+                      {SidebarItems(role).map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.href === pathName
+                              ? "bg-accent text-primary"
+                              : "text-accent hover:bg-accent hover:text-primary",
+                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                          )}
+                        >
+                          <item.icon
+                            className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300"
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </Link>
+                      ))}
+                    </nav>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+              <div className="w-14 flex-shrink-0" aria-hidden="true">
+                {/* Force sidebar to shrink to fit close icon */}
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+
+        {/* Static sidebar for desktop */}
+        <div className="hidden md:fixed h-screen md:flex md:w-[20%] md:flex-col">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex min-h-0 flex-1 flex-col bg-tertiary">
+            <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+              <nav className="mt-5 flex-1 space-y-1 px-2">
+                {SidebarItems(role).map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.href === pathName
+                        ? "bg-accent text-primary"
+                        : "text-accent hover:bg-accent hover:text-primary",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                    )}
+                  >
+                    <item.icon
+                      className="mr-3 h-6 w-6 flex-shrink-0 "
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-1 flex-col md:pl-[20%]">
+          <div className="pl-1 py-1 sm:pl-3 sm:pt-3 md:hidden border-2 border-primary">
+            <button
+              type="button"
+              className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <section className="flex-1">
+            {
+              <div className="py-6">
+                {
+                  <div>
+                    <Transition.Root show={sidebarOpen} as={Fragment}>
+                      <Dialog
+                        as="div"
+                        className="relative z-40 md:hidden"
+                        onClose={setSidebarOpen}
+                      >
+                        <Transition.Child
+                          as={Fragment}
+                          enter="transition-opacity ease-linear duration-300"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="transition-opacity ease-linear duration-300"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+                        </Transition.Child>
+
+                        <div className="fixed inset-0 z-40 flex">
+                          <Transition.Child
+                            as={Fragment}
+                            enter="transition ease-in-out duration-300 transform"
+                            enterFrom="-translate-x-full"
+                            enterTo="translate-x-0"
+                            leave="transition ease-in-out duration-300 transform"
+                            leaveFrom="translate-x-0"
+                            leaveTo="-translate-x-full"
+                          >
+                            <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-tertiary">
+                              <Transition.Child
+                                as={Fragment}
+                                enter="ease-in-out duration-300"
+                                enterFrom="opacity-0"
+                                enterTo="opacity-100"
+                                leave="ease-in-out duration-300"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                              >
+                                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                                  <button
+                                    type="button"
+                                    className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                                    onClick={() => setSidebarOpen(false)}
+                                  >
+                                    <span className="sr-only">
+                                      Close sidebar
+                                    </span>
+                                    <XMarkIcon
+                                      className="h-6 w-6 text-white"
+                                      aria-hidden="true"
+                                    />
+                                  </button>
+                                </div>
+                              </Transition.Child>
+                              <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
+                                <nav className="mt-5 space-y-1 px-2">
+                                  {SidebarItems(role).map((item) => (
+                                    <Link
+                                      key={item.name}
+                                      href={item.href}
+                                      className={classNames(
+                                        item.href === pathName
+                                          ? "bg-accent text-primary"
+                                          : "text-accent hover:bg-accent hover:text-primary",
+                                        "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                                      )}
+                                    >
+                                      <item.icon
+                                        className="mr-4 h-6 w-6 flex-shrink-0"
+                                        aria-hidden="true"
+                                      />
+                                      {item.name}
+                                    </Link>
+                                  ))}
+                                </nav>
+                              </div>
+                            </Dialog.Panel>
+                          </Transition.Child>
+                          <div
+                            className="w-14 flex-shrink-0"
+                            aria-hidden="true"
+                          >
+                            {/* Force sidebar to shrink to fit close icon */}
+                          </div>
+                        </div>
+                      </Dialog>
+                    </Transition.Root>
+
+                    <div className="w-full h-full">
+                      <section className="w-full h-full">
+                        {children}
+                      </section>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </section>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Sidebar;

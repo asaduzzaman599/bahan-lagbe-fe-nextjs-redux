@@ -11,7 +11,13 @@ const config: Config =  withMT({
   
   ],
   theme: {
-    extend: {
+    extend: {colors: {
+        primary: "#457bf6",
+        accent: "#c8d2f8",
+        secondary: "#263f7e",
+        tertiary: "#2c2c54",
+        background: "#f0f3f7",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

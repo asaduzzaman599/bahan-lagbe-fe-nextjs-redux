@@ -1,6 +1,5 @@
 import AvailableService from "@/components/homepage/AvailableService"
 import Category from "@/components/homepage/Category"
-import Footer from "@/components/homepage/Footer"
 import Header from "@/components/homepage/Header"
 import News from "@/components/homepage/News"
 import Overview from "@/components/homepage/Overview"

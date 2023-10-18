@@ -1,4 +1,5 @@
-"use client";
+
+import Dashboard from "@/components/ui/Dashboard"
 
 export default function DashboardLayout({
   children,
@@ -6,9 +7,10 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    
-    <div className='flex relative'>
+    <>
+    <Dashboard>
     {children}
-    </div>
+    </Dashboard>
+    </>
   )
 }
