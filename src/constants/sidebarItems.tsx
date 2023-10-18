@@ -76,7 +76,7 @@ export const SidebarItems = (role: string) => {
 
   if (role === USER_ROLE.SUPER_ADMIN) return adminDashboardNavigation;
   else if (role === USER_ROLE.ADMIN) return adminDashboardNavigation;
-  else if (role === USER_ROLE.USER) return userDashboardNavigation;
+  else if (role === USER_ROLE.CUSTOMER) return userDashboardNavigation;
   else {
     return userDashboardNavigation;
   }

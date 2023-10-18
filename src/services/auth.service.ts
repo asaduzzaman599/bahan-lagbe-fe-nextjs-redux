@@ -1,4 +1,5 @@
 
+import { USER_ROLE } from "@/constants/role"
 import { authKey } from "@/constants/storageKey"
 import { decodedToken } from "@/utils/jwt"
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
@@ -20,7 +21,9 @@ export const getUserInfo = () => {
   const authToken = getFromLocalStorage(authKey);
   if (authToken) {
     const decodedData = decodedToken(authToken);
-    return decodedData;
+    return decodedData as {
+      role: USER_ROLE; userId: string
+    };
   } else {
     return "";
   }

@@ -1,6 +1,4 @@
 "use client";
-
-import { Input, Typography } from "@material-tailwind/react"
 import { Controller, useFormContext } from "react-hook-form"
 interface IInput {
   name: string;
@@ -11,20 +9,23 @@ interface IInput {
   placeholder?: string;
   label?: string;
   message?: string;
+  disabled?: boolean
+  required?: boolean
 }
 
 const FormInput = ({
   name,
   type,
-  size,
+  disabled,
   value,
   id,
   placeholder,
   label,
-    message
+  message,
+  required
 }: IInput) => {
   const { control } = useFormContext();
-
+console.log('value',value)
   return (
     <>
       {label && <p className="text-xs font-semibold text-gray-900">{label}</p>}
@@ -38,8 +39,9 @@ const FormInput = ({
               placeholder={placeholder}
               {...field}
               value={value ? value : field.value}
-              id={id}
-              className="border border-gray-200 text-sm py-2 px-4 w-full rounded outline-none bg-white text-gray-800"
+              disabled={disabled}
+              className={`border border-gray-200 text-sm py-2 px-4 w-full rounded outline-none bg-white text-gray-800 ${disabled? 'bg-gray-200 cursor-not-allowed':''}`}
+              required={required}
               />
               {message &&
         <p>{message}</p>}
