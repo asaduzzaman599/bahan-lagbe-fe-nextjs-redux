@@ -9,4 +9,5 @@ export type signupInputValue = {
   contactNo: string;
   address?: string
   profileImg?: string
+  role?: string
 };

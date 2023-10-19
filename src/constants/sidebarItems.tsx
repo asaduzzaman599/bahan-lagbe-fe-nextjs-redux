@@ -46,7 +46,7 @@ export const SidebarItems = (role: string) => {
     {
       id: 6,
       name: "Manage Users",
-      href: "/manage-users",
+      href: "/admin/users",
       icon: UsersIcon,
     },
     {
@@ -58,13 +58,13 @@ export const SidebarItems = (role: string) => {
     {
       id: 8,
       name: "Manage Category",
-      href: "/manage-categories",
+      href: "/admin/manage-categories",
       icon: ChartBarIcon,
     },
     {
       id: 9,
       name: "Manage Vehicle",
-      href: "/manage-vehicles",
+      href: "/admin/manage-vehicles",
       icon: ChartBarIcon,
     },
   ];

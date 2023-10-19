@@ -2,6 +2,7 @@
 
 import CommonButton from "@/components/ui/CommonButton"
 import { useDeleteCategoryMutation, useGetCategoryQuery } from "@/redux/api/categories-api"
+import { useDeleteVehicleMutation, useGetVehicleQuery } from "@/redux/api/vehicles-api"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -9,23 +10,23 @@ type IDProps = {
     params: any;
   };
 
-const CategoriesPage = ({params}: IDProps) => {
+const VehiclesPage = ({params}: IDProps) => {
     const router = useRouter()
-    const {categoryId} = params
-    const {data:res} = useGetCategoryQuery(categoryId)
-    const [deleteCategory] = useDeleteCategoryMutation(categoryId)
+    const {vehicleId} = params
+    const {data:res} = useGetVehicleQuery(vehicleId)
+    const [deleteVehicle] = useDeleteVehicleMutation(vehicleId)
     const data = res?.data
     const handleDelete =async () => {
-        const res = await deleteCategory(categoryId)
-        console.log(res, categoryId)
+        const res = await deleteVehicle(vehicleId)
+        console.log(res, vehicleId)
         if(res)
-         router.push(`/manage-categories`)
+         router.push(`/manage-vehicles`)
     }
     return (
         <div>
-            Category {data?.title}
+            Category {data?.model}
             <div className="my-4 flex gap-4">
-                <Link href={`/admin/manage-categories/${data?.id}/edit`}><CommonButton >Edit</CommonButton></Link>
+                <Link href={`/admin/manage-vehicles/${data?.id}/edit`}><CommonButton >Edit</CommonButton></Link>
                 <button onClick={()=>{handleDelete()}}>
                     <CommonButton >Delete</CommonButton>
                     </button>
@@ -34,4 +35,4 @@ const CategoriesPage = ({params}: IDProps) => {
     );
 };
 
-export default CategoriesPage;
+export default VehiclesPage;

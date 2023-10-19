@@ -1,5 +1,5 @@
 
-import { IVehicle } from "@/types"
+import { IVehicle, IVehicleQueryType } from "@/types"
 import { TagType } from "../tag-types"
 import { baseApi } from "./base-api"
 
@@ -29,10 +29,28 @@ export const vehiclesApi = baseApi.injectEndpoints({
       invalidatesTags:[TagType.USERS]
     }),
     getVehicles: build.query({
-      query: () =>({
-        url: '/vehicles/',
-        method: "GET",
-      }),
+      query: (query?: IVehicleQueryType) => {
+        let url = `/vehicles`
+
+        const queryArr = []
+        for(const key in query){
+          if(query[key as keyof IVehicleQueryType]){
+            const tempQuery = query[key  as keyof IVehicleQueryType]
+            if(tempQuery)
+            queryArr.push(`${key}=${tempQuery}`)
+          }
+        }
+
+     
+        if(queryArr.length){
+          url = `${url}?${queryArr.join('&')}`
+        }
+        
+        return {
+          url: url,
+          method: 'GET'
+        }
+      },
       providesTags: [TagType.VEHICLES]
     }),
     getVehicle: build.query({

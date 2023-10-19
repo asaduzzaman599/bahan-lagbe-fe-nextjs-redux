@@ -1,37 +1,30 @@
 'use client'
-import { USER_ROLE } from '@/constants/role'
-import { useGetUsersQuery } from '@/redux/api/users-api'
-import { getUserInfo } from '@/services/auth.service'
-import { IUser } from '@/types'
+import { useGetVehiclesQuery } from '@/redux/api/vehicles-api'
+import { IVehicle } from '@/types'
 import Link from 'next/link'
-import React from 'react';
 
-const UsersPage = () => {
-    const currentUser = getUserInfo()
-    const {data: res} = useGetUsersQuery({}) 
+const VehiclesPage = () => {
+    const {data: res} = useGetVehiclesQuery({})
     const data = res?.data
-   
-    
-            const people = data?.map((i:IUser)=>({ id: i.id, name: i.name, contactNo: i.contactNo, email: i.email, role: i.role }))
- 
-
-  return (
-    <div>
-    <div className="px-4 sm:px-6 lg:px-8">
+    console.log(data)
+    const vehicles = data?.result?.map((i:IVehicle)=>({ id: i.id, model: i.model, type: i.type, category: i.category, price: i.price, status: i.status }))
+    return (
+        <div>
+            <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Users</h1>
+          <h1 className="text-base font-semibold leading-6 text-gray-900">Manage Vehicles</h1>
           <p className="mt-2 text-sm text-gray-700">
            
           </p>
         </div>
-        {currentUser && currentUser.role === USER_ROLE.SUPER_ADMIN && <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          <Link href={'/super-admin/admin/create-admin'}>
+        {/* currentUser && currentUser.role === USER_ROLE.SUPER_ADMIN && */ <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+          <Link href={'/admin/manage-vehicles/create-vehicle'}>
           <button
             type="button"
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Add Admin
+            Add Vehicle
           </button>
           </Link>
         </div>}
@@ -43,16 +36,19 @@ const UsersPage = () => {
               <thead>
                 <tr>
                   <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                    Name
+                    Model
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Contact No
+                    Type
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Email
+                    Category
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Role
+                    Price
+                  </th>
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    Status
                   </th>
                   <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                     <span className="sr-only">Edit</span>
@@ -60,17 +56,18 @@ const UsersPage = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {people?.map((person: Partial<IUser>) => (
-                  <tr key={person.email}>
+                {vehicles?.map((v: Partial<IVehicle>) => (
+                  <tr key={v.id}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                      {person.name}
+                      {v.model}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.contactNo}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.type}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.category?.title}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.price}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.status}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <Link href={`/admin/users/edit/${person.id}`} className="text-indigo-600 hover:text-indigo-900">
-                        Edit<span className="sr-only">, {person.name}</span>
+                      <Link href={`/admin/manage-vehicles/${v.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
+                        Edit<span className="sr-only">, {v.model}</span>
                       </Link>
                     </td>
                   </tr>
@@ -81,9 +78,8 @@ const UsersPage = () => {
         </div>
       </div>
     </div>
-
         </div>
     );
 };
 
-export default UsersPage;
+export default VehiclesPage;
