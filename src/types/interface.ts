@@ -20,6 +20,22 @@ export interface IVehicle {
   categoryId: string
   category?: ICategory
 }
+export interface IFeedback{
+  id?: string
+  topic:string
+  message:string
+}
+export interface IContent{
+  id?: string
+  title: string
+  description:string
+}
+export interface IReviewAndRating{
+  id?: string
+  review: string
+  rating: number
+  bookingId: string
+}
 
 export interface QueryType {
   size?: number 
@@ -38,4 +54,10 @@ export interface IVehicleQueryType extends QueryType{
 
 export type IUser  =signupInputValue & {
   id: string;
+}
+
+export interface IBooking {
+  startTime: Date
+  endTime: Date
+  vehicleId: string
 }
