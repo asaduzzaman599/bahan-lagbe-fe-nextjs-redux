@@ -18,7 +18,6 @@ const VehicleCreatePage = () => {
 
     const onSubmit = async(inputData: Partial<IVehicle>)=>{
         try{
-            console.log(inputData)
             if(inputData.price)
             inputData.price = Number(inputData.price)
 

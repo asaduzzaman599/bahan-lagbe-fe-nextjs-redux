@@ -1,12 +1,12 @@
 'use client'
-import { useGetVehiclesQuery } from '@/redux/api/vehicles-api'
+import { useDeleteVehicleMutation, useGetVehiclesQuery } from '@/redux/api/vehicles-api'
 import { IVehicle } from '@/types'
 import Link from 'next/link'
 
 const VehiclesPage = () => {
     const {data: res} = useGetVehiclesQuery({})
+    const [deleteVehicle] = useDeleteVehicleMutation()
     const data = res?.data
-    console.log(data)
     const vehicles = data?.result?.map((i:IVehicle)=>({ id: i.id, model: i.model, type: i.type, category: i.category, price: i.price, status: i.status }))
     return (
         <div>
@@ -65,10 +65,13 @@ const VehiclesPage = () => {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.category?.title}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.price}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{v.status}</td>
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <Link href={`/admin/manage-vehicles/${v.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
+                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex justify-end">
+                    <Link href={`/admin/manage-vehicles/${v.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
                         Edit<span className="sr-only">, {v.model}</span>
                       </Link>
+                      <button onClick={()=>deleteVehicle(v.id)} className="text-red-600 hover:text-indigo-900">
+                        Delete<span className="sr-only">, {v.model}</span>
+                      </button>
                     </td>
                   </tr>
                 ))}

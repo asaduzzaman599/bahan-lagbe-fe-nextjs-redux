@@ -8,7 +8,6 @@ type IDProps = {
   
 const UserPage = ({params}:IDProps) => {
     const {userId} = params
-    console.log('userId',userId)
     const {data: res} = useGetUserQuery(userId)
     const data = res?.data
     

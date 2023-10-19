@@ -22,7 +22,6 @@ const UpdateUser = ({ params }: IDProps) => {
     const currentUser = getUserInfo() 
     const onSumbit = async (inputData: signupInputValue) =>{
         try{
-            console.log('inputData',inputData)
             /* const res = await updateProfile({ id: data.id, data: {...inputData,
             ...(inputData.password ? { password: inputData.password } : {})}})
             router.push(`/admin/users/${data.id}`)
@@ -37,7 +36,6 @@ const UpdateUser = ({ params }: IDProps) => {
         contactNo: data?.contactNo || '', 
         address: data?.address || ''
     };
-    console.log(defaultValues) 
     return (
         <div>
             <div className='w-4/5 mx-auto p-6 bg-white'>

@@ -53,6 +53,31 @@ export const vehiclesApi = baseApi.injectEndpoints({
       },
       providesTags: [TagType.VEHICLES]
     }),
+    getVehiclesByCategories: build.query({
+      query: (input:{query?: IVehicleQueryType; id: string}) => {
+        let url = `/vehicles/${input.id}/category`
+
+        const queryArr = []
+        for(const key in input?.query){
+          if(input?.query[key as keyof IVehicleQueryType]){
+            const tempQuery = input?.query[key  as keyof IVehicleQueryType]
+            if(tempQuery)
+            queryArr.push(`${key}=${tempQuery}`)
+          }
+        }
+
+     
+        if(queryArr.length){
+          url = `${url}?${queryArr.join('&')}`
+        }
+        
+        return {
+          url: url,
+          method: 'GET'
+        }
+      },
+      providesTags: [TagType.VEHICLES]
+    }),
     getVehicle: build.query({
       query: (id:string) =>({
         url: `/vehicles/${id}`,
@@ -63,4 +88,4 @@ export const vehiclesApi = baseApi.injectEndpoints({
   }),
 })
 
-export const { useCreateVehicleMutation, useUpdateVehicleMutation, useGetVehicleQuery, useGetVehiclesQuery,useDeleteVehicleMutation } = vehiclesApi
+export const { useCreateVehicleMutation, useUpdateVehicleMutation, useGetVehicleQuery, useGetVehiclesQuery,useDeleteVehicleMutation, useGetVehiclesByCategoriesQuery } = vehiclesApi

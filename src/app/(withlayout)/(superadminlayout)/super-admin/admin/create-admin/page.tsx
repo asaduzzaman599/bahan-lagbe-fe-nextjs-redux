@@ -12,7 +12,6 @@ const AdminPage = () => {
     const router = useRouter()
     const onSubmit = async (inputData: signupInputValue) =>{
         try{
-            console.log(inputData)
             const res = await createAdmin(inputData)
             // router.push('/super-admin/admin')
             console.log('res',res)

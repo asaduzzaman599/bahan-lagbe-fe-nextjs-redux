@@ -5,7 +5,7 @@ import { useGetVehiclesQuery } from '@/redux/api/vehicles-api'
 import { IVehicle, IVehicleQueryType } from '@/types'
 import { useState } from 'react'
 
-export default async function VehiclePage () {
+export default function VehiclePage () {
     const [search,setSearch] = useState('')
     const query: Partial<IVehicleQueryType> = {}
     query['status'] = 'AVAILABLE'
@@ -13,11 +13,6 @@ export default async function VehiclePage () {
 
     const {data:res} = useGetVehiclesQuery({...query})
     const data = res?.data
-    console.log(data?.result)
-    /* await fetch(`${getBaseUrl()}/vehicles?query='AVAILABLE'`, {
-    next: { revalidate: 10 },
-    })
-  const {data} = await res.json() */
     return (
         <div>
                     <div className='container mx-auto'>

@@ -68,17 +68,12 @@ export default function Navbar({children}: {children?: React.ReactNode}) {
             Home
           </Link>
           <Link
-            href="/service"
+            href="/vehicles"
             className="text-sm font-semibold leading-6 text-accent hover:text-secondary"
           >
             Service
           </Link>
-          <Link
-            href="/blogs"
-            className="text-sm font-semibold leading-6 text-accent hover:text-secondary"
-          >
-            Blogs
-          </Link>
+          
           <Link
             href="/feedbacks"
             className="text-sm font-semibold leading-6 text-accent hover:text-secondary"
@@ -142,6 +137,19 @@ export default function Navbar({children}: {children?: React.ReactNode}) {
                         )}
                       >
                         Profile
+                      </Link>
+                    )}
+                  </Menu.Item>
+                    <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        href="/profile"
+                        className={classNames(
+                          active ? "bg-gray-100" : "",
+                          "block px-4 py-2 text-sm text-gray-700"
+                        )}
+                      >
+                        Dashboard
                       </Link>
                     )}
                   </Menu.Item>

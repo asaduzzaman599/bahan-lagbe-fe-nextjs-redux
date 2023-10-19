@@ -4,20 +4,25 @@ import React from 'react';
 import Vehicle from '../ui/Vehicle'
 import Link from 'next/link'
 
-const AvailableService =  async () => {
-    const res = await fetch(`${getBaseUrl()}/vehicles?size=6`, {
+const EventByCategory =  async () => {
+    const res = await fetch(`${getBaseUrl()}/vehicles?size=100`, {
         next: { revalidate: 10 },
         })
     const {data} = await res.json()
+    const vehicles: IVehicle[] = []
+       data?.result?.map((i:IVehicle)=>{
+            if(!vehicles?.map((i:IVehicle)=>i?.categoryId).includes(i.categoryId))
+            vehicles.push(i)
+       })
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mt-10'>
            <div>
-            <h3 className="text-lg lg:text-xl font-semibold text-blue-gray-800 text-center">
-            Available Service
+            <h3 className="text-lg lg:text-2xl font-extrabold text-blue-gray-800 text-center">
+            Event By Categories
             </h3>
             <div className='mt-6 grid grid-cols-1 lg grid-cols-3'>
                 {
-                    data?.result?.map((i:IVehicle)=><Vehicle vehicle={i} key={i.id}></Vehicle>)
+                    vehicles?.slice(0,3)?.map((i:IVehicle)=><Vehicle vehicle={i} key={i.id}></Vehicle>)
                 }
             </div>
            </div>
@@ -30,4 +35,4 @@ const AvailableService =  async () => {
     );
 };
 
-export default AvailableService;
+export default EventByCategory;

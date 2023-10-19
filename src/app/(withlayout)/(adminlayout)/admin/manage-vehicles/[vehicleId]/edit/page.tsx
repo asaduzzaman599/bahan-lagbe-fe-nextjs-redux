@@ -27,7 +27,6 @@ const VehicleUpdatePage = ({params}: IDProps) => {
             if(inputData.price)
             inputData.price = Number(inputData.price)
         
-            console.log(inputData)
               const {data} = await updateVehicle({id: vehicleData.id, data: inputData}).unwrap()
             console.log('res',data)
             if(data?.id)

@@ -6,6 +6,7 @@ import FormInput from "@/components/form/FormInput"
 import { useSignupUserMutation } from "@/redux/api/auth-api"
 import { isLoggedIn } from "@/services/auth.service"
 import { signupInputValue } from "@/types"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 const Signup =  () => {
@@ -62,6 +63,7 @@ const Signup =  () => {
                 placeholder="Password"
                 label="User Password"
               />
+              <p className="text-xs text-right">Already have account? <Link href="/login" className=" font-bold hover:text-blue underline underline-black"><span>sign in</span></Link></p>
             </div>
             <FormButton value='Signup' />
           </Form>

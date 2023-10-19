@@ -25,7 +25,6 @@ const FormInput = ({
   required
 }: IInput) => {
   const { control } = useFormContext();
-console.log('value',value)
   return (
     <>
       {label && <p className="text-xs font-semibold text-gray-900">{label}</p>}

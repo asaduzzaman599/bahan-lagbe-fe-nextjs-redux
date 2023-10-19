@@ -1,5 +1,6 @@
 import AvailableService from "@/components/homepage/AvailableService"
-import Category from "@/components/homepage/Category"
+import CategorySection from "@/components/homepage/CategorySection"
+import EventByCategory from "@/components/homepage/EventByCategory"
 import Header from "@/components/homepage/Header"
 import News from "@/components/homepage/News"
 import Overview from "@/components/homepage/Overview"
@@ -13,7 +14,8 @@ const Home = () => {
             <Header />
             <AvailableService />
             <UpcomingService />
-            <Category />
+            <CategorySection />
+            <EventByCategory />
             {/*unique*/}
             <RecentlyViewed />
            <Overview />

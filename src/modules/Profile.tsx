@@ -8,7 +8,6 @@ import React from 'react';
 const Profile = () => {
     const { data:res }= useGetProfileQuery({})
     const data = res?.data
-    console.log('data',data)
     const onSubmit = (inputData:any) =>{
 
     }

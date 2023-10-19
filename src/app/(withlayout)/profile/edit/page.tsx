@@ -26,7 +26,6 @@ const ProfileEditPage = () => {
         contactNo: data?.contactNo || '', 
         address: data?.address || ''
     };
-    console.log(defaultValues) 
     return (
         <div>
             <div className='w-4/5 mx-auto p-6 bg-white'>

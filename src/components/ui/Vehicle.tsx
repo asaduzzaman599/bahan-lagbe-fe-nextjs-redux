@@ -4,7 +4,6 @@ import { IVehicle } from '@/types'
 import Image from 'next/image'
 
 export default function Vehicle ({vehicle}:{vehicle: IVehicle}) {
-    console.log(vehicle)
     return (
         <div className='p-4 rounded shadow'>
             <Image src={vehicle?.imageUrl ?? defultImage} alt='Vehicle image' height={400} width={400} />
