@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
-
-const CommonTitle = ({children}:{children: ReactNode}) => {
+const CommonTitle = ({title,subText}:{title: string, subText?: string}) => {
     return (
-            <h3 className='text-lg font-semibold text-gray-800'>{children}</h3>
+           <>
+                <h3 className='text-3xl font-bold text-primary mb-2 text-center'>{title}</h3>
+                {subText && <h5 className='text-lg font-medium text-secondary text-center'>{subText}</h5>}
+            </>
     );
 };
 

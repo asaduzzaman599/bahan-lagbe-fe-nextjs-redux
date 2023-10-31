@@ -37,7 +37,7 @@ const CategoryUpdatePage = ({params}: IDProps ) => {
     }
     return (
         <div className="w-4/5 p-6 mx-auto">
-            <CommonTitle>Update Category</CommonTitle> 
+            <CommonTitle title="Update Category" /> 
             <div className="my-2">
                 <Form submitHandler={onSubmit} defaultValues={defaultValues}>
                 <div className="mb-2">

@@ -12,10 +12,10 @@ const config: Config =  withMT({
   ],
   theme: {
     extend: {colors: {
-        primary: "#457bf6",
-        accent: "#c8d2f8",
-        secondary: "#263f7e",
-        tertiary: "#2c2c54",
+        primary: "#12486B",
+        accent: "#FFC827",
+        secondary: "#6B7280",
+        light: "#ffffff",
         background: "#f0f3f7",
       },
       backgroundImage: {

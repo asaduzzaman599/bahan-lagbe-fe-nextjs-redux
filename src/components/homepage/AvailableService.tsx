@@ -3,6 +3,7 @@ import { IVehicle } from '@/types'
 import React from 'react';
 import Vehicle from '../ui/Vehicle'
 import Link from 'next/link'
+import CommonTitle from '../ui/CommonTitle'
 
 const AvailableService =  async () => {
     const res = await fetch(`${getBaseUrl()}/vehicles?size=6`, {
@@ -10,12 +11,10 @@ const AvailableService =  async () => {
         })
     const {data} = await res.json()
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto  p-10'>
            <div>
-            <h3 className="text-lg lg:text-xl font-semibold text-blue-gray-800 text-center">
-            Available Service
-            </h3>
-            <div className='mt-6 grid grid-cols-1 lg grid-cols-3'>
+            <CommonTitle title='Available Vehicle' subText='Booking your desired vehicle'/>
+            <div className='my-4 grid grid-cols-2 lg:grid-cols-5 gap-4'>
                 {
                     data?.result?.map((i:IVehicle)=><Vehicle vehicle={i} key={i.id}></Vehicle>)
                 }
@@ -23,7 +22,7 @@ const AvailableService =  async () => {
            </div>
            <div className='mt-6 w-full text-center'>
            <Link href='/vehicles'>
-           <button className='bg-blue-900 text-white py-2 px-6 rounded-full'>More</button>
+           <button className='bg-light-900 text-primary border  border-accent py-2 px-6 rounded-full'>More</button>
            </Link>
            </div>
         </div>

@@ -47,7 +47,7 @@ const VehicleUpdatePage = ({params}: IDProps) => {
     console.log(defaultValues)
     return (
         <div className="w-4/5 p-6 mx-auto">
-            <CommonTitle>Create Category</CommonTitle> 
+            <CommonTitle title="Create Category" />
             <div className="my-2">
                 <Form submitHandler={onSubmit} defaultValues={defaultValues}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-4">

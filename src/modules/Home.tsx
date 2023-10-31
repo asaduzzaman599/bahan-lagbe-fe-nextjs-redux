@@ -1,4 +1,5 @@
 import AvailableService from "@/components/homepage/AvailableService"
+import BusinessSummary from "@/components/homepage/BusinessSummary"
 import CategorySection from "@/components/homepage/CategorySection"
 import EventByCategory from "@/components/homepage/EventByCategory"
 import Header from "@/components/homepage/Header"
@@ -12,6 +13,7 @@ const Home = () => {
     return (
         <div>
             <Header />
+            <BusinessSummary />
             <AvailableService />
             <UpcomingService />
             <CategorySection />

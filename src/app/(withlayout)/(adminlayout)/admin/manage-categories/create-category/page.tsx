@@ -26,7 +26,7 @@ const CategoryCreatePage = () => {
     }
     return (
         <div className="w-4/5 p-6 mx-auto">
-            <CommonTitle>Create Category</CommonTitle> 
+            <CommonTitle title="Create Category" /> 
             <div className="my-2">
                 <Form submitHandler={onSubmit}>
                 <div className="mb-2">

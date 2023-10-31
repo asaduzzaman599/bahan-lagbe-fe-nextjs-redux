@@ -12,9 +12,10 @@ const Header = () => {
             </div>
             <div className='h-full order-1 flex items-center'>
                 <div className='text-center flex flex-col items-center justify-center w-full'>
-                    <h2 className='text-lg lg:text-3xl font-bold text-blue-gray-900 flex flex-col items-center justify-center'>BAHAN LAGBE?</h2>
-                    <p className='text-gray-500 font-light text-sm lg:text-lg'>WE Are the first online platform </p>
-                    <p className='text-gray-500 font-light text-sm lg:text-lg'>to book your desire vehicle </p>
+                    <h2 className='text-lg lg:text-3xl font-bold text-primary flex flex-col items-center justify-center'>BAHAN LAGBE?</h2>
+                    <p className='text-gray-500 font-light text-sm lg:text-lg'>We are the first online platform </p>
+                    <p className='text-gray-500 font-light text-sm lg:text-lg mb-2'>to book your desire vehicle </p>
+                    <button className='text-accent font-bold font-lg px-6 py-2 rounded-full bg-primary border border-accent'>Book Now</button>
                 </div>
             </div>
         </div>

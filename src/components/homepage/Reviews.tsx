@@ -1,9 +1,10 @@
 import React from 'react';
+import CommonTitle from '../ui/CommonTitle'
 
 const Reviews = () => {
     return (
-        <div className='container mx-auto my-6'>
-            <h3 className='text-center text-xl font-bold text-blue-gray-800'>Review</h3>
+        <div className='container mx-auto my-6 p-10'>
+            <CommonTitle title='Reviews and Ratings' subText="What our customer say's from there experience" />
         <div className='text-center tex-sm'>
             Review Not Implemented
         </div>

@@ -17,7 +17,7 @@ export default function VehiclePage () {
         <div>
                     <div className='container mx-auto'>
                         
-                        <div className='text-center my-4 text-lg lg:text-3xl text-blue-gray-800'><CommonTitle>Available Vehicles</CommonTitle></div>
+                        <div className='text-center my-4 text-lg lg:text-3xl text-blue-gray-800'><CommonTitle title='Available Vehicles' subText="Book your desired vehicle"/></div>
                         <div>
                             <input type='text' className='p-2 w-64 rounded border border-gry-300' placeholder='Search' /> 
                         </div>

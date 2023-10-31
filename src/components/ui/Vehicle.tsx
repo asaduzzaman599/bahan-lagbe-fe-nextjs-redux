@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function Vehicle ({vehicle}:{vehicle: IVehicle}) {
     return (
-        <div className='p-4 rounded shadow'>
+        <div className='p-2 rounded shadow'>
             <Image src={vehicle?.imageUrl ?? defultImage} alt='Vehicle image' height={400} width={400} />
             <div className='py-2 text-center grid gap-2'>
                 <div >
@@ -24,7 +24,7 @@ export default function Vehicle ({vehicle}:{vehicle: IVehicle}) {
                 </div>
                 <div>
                     <p className='font-semibold text-sm text-gray-700'>Price</p>
-                    <p className='font-bold text-blue-gray-700 text-sm'>{vehicle.price} <span className='text-xs text-light'>(Per day)</span></p>
+                    <p className='font-bold text-blue-gray-700 text-sm'>{vehicle.price} <span className='text-xs text-secondary'>(Per day)</span></p>
                     
                 </div>
                 <div>
