@@ -11,7 +11,7 @@ export const reviewAndRatingsApi = baseApi.injectEndpoints({
         method: 'POST',
         data,
       }),
-      invalidatesTags:[TagType.REVIEWANDRATINGS]
+      invalidatesTags:[TagType.REVIEWANDRATINGS, TagType.BOOKING]
     }),
     updateReviewAndRating: build.mutation({
       query: (input: {id:string, data:Partial<IReviewAndRating>}) =>({

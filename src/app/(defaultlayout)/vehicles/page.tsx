@@ -15,13 +15,13 @@ export default function VehiclePage () {
     const data = res?.data
     return (
         <div>
-                    <div className='container mx-auto'>
+                    <div className='container mx-auto my-4 px-10'>
                         
                         <div className='text-center my-4 text-lg lg:text-3xl text-blue-gray-800'><CommonTitle title='Available Vehicles' subText="Book your desired vehicle"/></div>
                         <div>
                             <input type='text' className='p-2 w-64 rounded border border-gry-300' placeholder='Search' /> 
                         </div>
-                        <div className='grid lg:grid-cols-4 grid-cols-2 mt-4'>
+                        <div className='grid lg:grid-cols-5 grid-cols-2 mt-4'>
                             {
                                 data?.result.map((i: IVehicle)=><Vehicle vehicle={i} key={i.id} />)
                             }

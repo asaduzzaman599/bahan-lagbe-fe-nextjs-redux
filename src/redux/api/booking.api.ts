@@ -47,7 +47,7 @@ export const bookingsApi = baseApi.injectEndpoints({
         url: `/bookings/${id}`,
         method: "GET",
       }),
-      providesTags: [TagType.BOOKINGS]
+      providesTags: [TagType.BOOKINGS,TagType.BOOKING]
     }),
   }),
 })

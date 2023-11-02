@@ -15,8 +15,8 @@ const Home = () => {
             <Header />
             <BusinessSummary />
             <AvailableService />
-            <UpcomingService />
             <CategorySection />
+            <UpcomingService />
             <EventByCategory />
             {/*unique*/}
             <RecentlyViewed />

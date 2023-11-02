@@ -11,3 +11,11 @@ export type signupInputValue = {
   profileImg?: string
   role?: string
 };
+
+export enum BookingStatus {
+  PENDING = 'PENDING',
+  BOOKED = 'BOOKED',
+  CANCELLED = 'CANCELLED',
+  REJECT = 'REJECT',
+  COMPLETED = 'COMPLETED',
+}

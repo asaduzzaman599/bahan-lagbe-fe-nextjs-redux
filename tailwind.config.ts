@@ -16,6 +16,7 @@ const config: Config =  withMT({
         accent: "#FFC827",
         secondary: "#6B7280",
         light: "#ffffff",
+        danger: "#BC3433",
         background: "#f0f3f7",
       },
       backgroundImage: {

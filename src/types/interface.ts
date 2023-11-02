@@ -1,4 +1,4 @@
-import { signupInputValue } from "."
+import { BookingStatus, signupInputValue } from "."
 
 export interface ICategory {
   id?: string
@@ -57,7 +57,11 @@ export type IUser  =signupInputValue & {
 }
 
 export interface IBooking {
+  id?: string
   startTime: Date
   endTime: Date
   vehicleId: string
+  vehicle: IVehicle
+  status: BookingStatus
+  total?: number
 }
