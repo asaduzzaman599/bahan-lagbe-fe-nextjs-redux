@@ -18,7 +18,6 @@ const VehiclesPage = ({params}: IDProps) => {
     const data = res?.data
     const handleDelete =async () => {
         const res = await deleteVehicle(vehicleId)
-        console.log(res, vehicleId)
         if(res)
          router.push(`/manage-vehicles`)
     }

@@ -14,7 +14,6 @@ const AdminEditPage = () => {
     const onSumbit = async (inputData: signupInputValue) =>{
         try{
             const res = await updateProfile({ id: data.id, data: inputData})
-            console.log('res',res)
         }catch(err){
             console.log(err)
         }
@@ -25,7 +24,6 @@ const AdminEditPage = () => {
         contactNo: data?.contactNo || '', 
         address: data?.address || ''
     };
-    console.log(defaultValues) 
     return (
         <div>
             <div className='w-4/5 mx-auto p-6 bg-white'>

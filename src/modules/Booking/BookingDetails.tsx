@@ -3,10 +3,10 @@ import Loading from '@/components/ui/Loading'
 import { useGetBookingQuery } from '@/redux/api/booking.api'
 import { getUserInfo } from '@/services/auth.service'
 import { BookingStatus } from '@/types'
-import BookingAction from './BookingAction'
-import { useState } from 'react'
-import ReviewModal from './ReviewModal'
 import { Rating } from '@smastrom/react-rating'
+import { useState } from 'react'
+import BookingAction from './BookingAction'
+import ReviewModal from './ReviewModal'
 
 import '@smastrom/react-rating/style.css'
 
@@ -24,7 +24,6 @@ const BookingDetails = ({id}:IDParams) => {
     return <Loading />
     const data = resData.data
     const vehicle = data.vehicle
-    console.log(vehicle)
     const reviewAndRatings = data?.reviewAndRatings
     return (
         <div>
@@ -58,8 +57,10 @@ const BookingDetails = ({id}:IDParams) => {
                     (data.status === BookingStatus.COMPLETED && !data.reviewAndRatings && currentUser && currentUser.userId === data.userId) &&  <button className='text-sm py-2 px-4 bg-primary rounded-lg text-light font-bold' onClick={()=>setOpen(true)}>Add Review</button>
                    }
 
-                   <Rating style={{ maxWidth: 100 }} value={data.reviewAndRatings.rating}  />
+                   {reviewAndRatings && <>
+                   <Rating style={{ maxWidth: 100 }} value={data.reviewAndRatings?.rating}  />
                    <p className='text-secondary'>{data.reviewAndRatings.review}</p>
+                   </>}
                 </div>
             </div>
             <ReviewModal selectedId={data.id} open={open} setOpen={setOpen} />

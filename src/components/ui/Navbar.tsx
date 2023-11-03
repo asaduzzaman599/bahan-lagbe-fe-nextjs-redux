@@ -75,6 +75,12 @@ export default function Navbar({children}: {children?: React.ReactNode}) {
           </Link>
           
           <Link
+            href="/booking"
+            className="text-sm font-semibold leading-6 text-accent hover:text-secondary"
+          >
+            Bookings
+          </Link>
+          <Link
             href="/feedbacks"
             className="text-sm font-semibold leading-6 text-accent hover:text-secondary"
           >

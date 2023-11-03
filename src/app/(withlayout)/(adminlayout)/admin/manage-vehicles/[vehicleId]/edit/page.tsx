@@ -28,7 +28,6 @@ const VehicleUpdatePage = ({params}: IDProps) => {
             inputData.price = Number(inputData.price)
         
               const {data} = await updateVehicle({id: vehicleData.id, data: inputData}).unwrap()
-            console.log('res',data)
             if(data?.id)
             router.push(`/admin/manage-vehicles/${data.id}`) 
             

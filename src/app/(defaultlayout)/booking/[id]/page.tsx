@@ -1,3 +1,4 @@
+'use client'
 import BookingDetails from '@/modules/Booking/BookingDetails'
 import React from 'react';
 type IDParams = {

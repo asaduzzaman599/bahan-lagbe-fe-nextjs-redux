@@ -17,28 +17,27 @@ export const SidebarItems = (role: string) => {
     },
     {
       id: 2,
-      name: "My Cart",
-      href: "/cart",
+      name: "My Bookings",
+      href: "/booking",
       icon: ShoppingBagIcon,
     },
     {
       id: 3,
-      name: "My Bookings",
-      href: "/bookings",
-      icon: ShoppingBagIcon,
-    },
-    {
-      id: 4,
-      name: "Reviews",
-      href: "/reviews",
-      icon: StarIcon,
-    },
-    {
-      id: 5,
       name: "Profile",
       href: "/profile",
       icon: UserCircleIcon,
     },
+    /* {
+      id: 4,
+      name: "Reviews",
+      href: "/reviews",
+      icon: StarIcon,
+    },{
+      id: 2,
+      name: "My Cart",
+      href: "/cart",
+      icon: ShoppingBagIcon,
+    }, */
   ];
 
   const adminDashboardNavigation = [
@@ -52,7 +51,7 @@ export const SidebarItems = (role: string) => {
     {
       id: 7,
       name: "Manage Bookings",
-      href: "/manage-bookings",
+      href: "/admin/manage-booking",
       icon: ChartBarIcon,
     },
     {

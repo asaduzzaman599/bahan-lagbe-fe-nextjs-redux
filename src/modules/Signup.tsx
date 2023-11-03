@@ -20,7 +20,6 @@ const Signup =  () => {
 
     const onSubmit = async (data: signupInputValue)=>{
          const res = await signupUser(data)
-        console.log('res',res)
     }
     return (
         <div>

@@ -15,7 +15,6 @@ const CategoryCreatePage = () => {
     const onSubmit = async(inputData: Partial<ICategory>)=>{
         try{
              const res = await createCategory(inputData).unwrap()
-            console.log('res',res?.data)
             if(res?.data?.id)
             router.push(`/admin/manage-categories/${res?.data.id}`)
             

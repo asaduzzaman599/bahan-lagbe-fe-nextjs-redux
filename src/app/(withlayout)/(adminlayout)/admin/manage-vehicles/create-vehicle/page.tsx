@@ -22,7 +22,6 @@ const VehicleCreatePage = () => {
             inputData.price = Number(inputData.price)
 
             const res = await createVehicle(inputData).unwrap()
-            console.log('res',res.data)
             if(res?.data?.id)
             router.push(`/admin/manage-vehicles/${res?.data?.id}`) 
             

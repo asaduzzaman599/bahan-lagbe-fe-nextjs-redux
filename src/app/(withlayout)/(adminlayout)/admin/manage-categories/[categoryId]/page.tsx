@@ -17,7 +17,6 @@ const CategoriesPage = ({params}: IDProps) => {
     const data = res?.data
     const handleDelete =async () => {
         const res = await deleteCategory(categoryId)
-        console.log(res, categoryId)
         if(res)
          router.push(`/manage-categories`)
     }

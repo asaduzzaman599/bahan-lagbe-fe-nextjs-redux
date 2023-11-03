@@ -15,7 +15,6 @@ const ProfileEditPage = () => {
     const onSumbit = async (inputData: signupInputValue) =>{
         try{
             const res = await updateProfile({ id: data.id, data: inputData})
-            console.log('res',res)
         }catch(err){
             console.log(err)
         }

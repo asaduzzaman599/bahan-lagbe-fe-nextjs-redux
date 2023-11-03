@@ -22,7 +22,6 @@ const CategoryUpdatePage = ({params}: IDProps ) => {
     const onSubmit = async(inputData: Partial<ICategory>)=>{
         try{
              const res = await updateCategory({id: data.id, data: inputData}).unwrap()
-            console.log('res',res.data)
             if(res?.data?.id)
             router.push(`/admin/manage-categories/${data.id}`)
             

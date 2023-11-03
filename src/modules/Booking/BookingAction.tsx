@@ -12,7 +12,6 @@ const BookingAction = ({booking}: {booking: IBooking}) => {
     const triggerAction = async (status: BookingStatus) =>{
       try {
         const res = await bookingUpdate({id:booking.id as string, data: { status }})
-        console.log((res as any)?.data?.status)
       } catch (e){
         console.log(e)
       }
@@ -33,8 +32,7 @@ const BookingAction = ({booking}: {booking: IBooking}) => {
             </div>)
         }
     }else{
-        console.log('hello')
-        if(booking.status === BookingStatus.PENDING || booking.status === BookingStatus.CANCELLED) {
+        if(booking.status === BookingStatus.PENDING || booking.status === BookingStatus.BOOKED) {
             action = (<div className='flex gap-4 items-center'>
                 <button className='text-sm font-bold text-primary border border-primary rounded-lg bg-light py-1 px-4' onClick={()=>triggerAction(BookingStatus.CANCELLED)}>Cancel</button>
             </div>)

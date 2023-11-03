@@ -15,11 +15,14 @@ import 'react-time-picker/dist/TimePicker.css'
 import moment from 'moment';
 import { useCreateBookingMutation } from "@/redux/api/booking.api"
 import { useRouter } from "next/navigation"
+import { getUserInfo } from "@/services/auth.service"
 
 type IDParams = {
     id: string
 }
 const VehicleDetails = ({id}:IDParams ) => {
+
+  const currentUser = getUserInfo()
     
   const [open, setOpen] = useState(false)
   const [startDate, setStartDate] = useState<Date>();
@@ -89,9 +92,9 @@ const VehicleDetails = ({id}:IDParams ) => {
                     Price: <span className="text-accent font-bold text-lg"> {data?.price}</span> <span className="text-xs text-secondary">(per day)</span>
                     </div>
                     </div>
-                    <div className="flex justify-end">
+                    {currentUser && <div className="flex justify-end">
                         <button className="py-2 px-6 w-full rounded-full bg-primary border border-accent text-light" onClick={() => setOpen(true)}>Book Now</button>
-                    </div>
+                    </div>}
                 </div>
             </div>
             <Modal open={open} setOpen={setOpen} title='Pick Time and Date'>

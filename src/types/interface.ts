@@ -35,6 +35,10 @@ export interface IReviewAndRating{
   review: string
   rating: number
   bookingId: string
+  booking: IBooking
+  userId: string
+  user: IUser
+  createdAt: Date
 }
 
 export interface QueryType {
@@ -64,4 +68,5 @@ export interface IBooking {
   vehicle: IVehicle
   status: BookingStatus
   total?: number
+  user?: IUser
 }

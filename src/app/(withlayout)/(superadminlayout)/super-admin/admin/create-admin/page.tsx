@@ -14,7 +14,6 @@ const AdminPage = () => {
         try{
             const res = await createAdmin(inputData)
             // router.push('/super-admin/admin')
-            console.log('res',res)
         }catch(err){
             console.log(err)
         }

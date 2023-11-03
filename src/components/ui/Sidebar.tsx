@@ -103,7 +103,8 @@ const Sidebar = ({ children, sidebarOpen, setSidebarOpen }: { children: React.Re
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed h-screen md:flex md:w-[20%] md:flex-col">
+        <div className="md:flex">
+        <div className="hidden sticky top-0 h-dull md:flex md:max-w-[20%] md:flex-col bg-light pr-6">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col bg-tertiary">
             <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -130,7 +131,7 @@ const Sidebar = ({ children, sidebarOpen, setSidebarOpen }: { children: React.Re
             </div>
           </div>
         </div>
-        <div className="flex flex-1 flex-col md:pl-[20%]">
+        <div className="flex flex-1 flex-col w-full">
           <div className="pl-1 py-1 sm:pl-3 sm:pt-3 md:hidden border-2 border-primary">
             <button
               type="button"
@@ -244,6 +245,7 @@ const Sidebar = ({ children, sidebarOpen, setSidebarOpen }: { children: React.Re
               </div>
             }
           </section>
+        </div>
         </div>
       </div>
     </>
